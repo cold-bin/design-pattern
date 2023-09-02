@@ -15,10 +15,15 @@ type Uploader interface {
 
 // UploaderProxy 上传的代理者
 //
-//	将所有实现都进行代理，我们可以在Up执行前或后做一些事情，例如实现一些hook
+//	只对一种实现进行代理，我们可以在Up执行前或后做一些事情，例如实现一些hook
 type UploaderProxy struct {
-	Up Uploader
+	Up *QiniuOss
 }
+
+//// 也可以直接对所有的实现进行代理
+//type UploaderProxy struct {
+//	Up Uploader
+//}
 
 func (u *UploaderProxy) UploadSingle(ctx context.Context, key string, value []byte) {
 	// 这里可以做一些事情：

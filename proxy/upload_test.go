@@ -11,7 +11,7 @@ import (
 
 func TestUploaderProxy_UploadSingle(t *testing.T) {
 	type fields struct {
-		Up Uploader
+		Up *QiniuOss
 	}
 	type args struct {
 		ctx   context.Context
@@ -32,15 +32,15 @@ func TestUploaderProxy_UploadSingle(t *testing.T) {
 				value: nil,
 			},
 		},
-		{
-			name:   "ali oss",
-			fields: fields{Up: &AliOss{}},
-			args: args{
-				ctx:   context.Background(),
-				key:   "test.jpg",
-				value: nil,
-			},
-		},
+		//{
+		//	name:   "ali oss",
+		//	fields: fields{Up: &AliOss{}},
+		//	args: args{
+		//		ctx:   context.Background(),
+		//		key:   "test.jpg",
+		//		value: nil,
+		//	},
+		//},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
